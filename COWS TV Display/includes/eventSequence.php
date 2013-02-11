@@ -1,17 +1,17 @@
 <?php
 require_once("cowsRss.php");
 class eventSequence	{
+	var $eventList;
+	var $_displayPast;
 	function __eventSequence($eventArray)	{
-		
+		$eventList = array();
+		foreach ($eventArray as $event)	{
+			array_push($eventList,new event($event));
+		}
+		$displayPast = false;
 	}
-	function doLoc($str)	{
-		$val = explode(" ",$str);
-		echo "<div id = 'loc'>".str_replace("_"," ",$val[0]) . ", Room " . $val[1]."</div>\n";
-		return;
-	}
-	function getDate($str)	{
-		$date = explode(" ",$str);
-		return $date[0];
+	function setDisplayPast($bool)	{
+		$displayPast = $bool;
 	}
 	function formatTime($str)	{
 		$date = $this->getDate($str);
@@ -19,9 +19,13 @@ class eventSequence	{
 		$str = str_replace(":00 "," ",$str);
 		return $str;
 	}
-	function isPast($str)	{
-		//List events that are at most 3 hours lapsed
-		return strtotime($str)-10800 < time();
+	
+	function toString()	{
+		foreach($eventList as $event)	{
+			if (!$event->isPast() || $displayPast)	{
+				$event->toString();
+			}
+		}
 	}
 }
 ?>
