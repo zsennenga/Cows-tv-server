@@ -1,16 +1,43 @@
 <?php
-//Include and initialize parser
-require_once('simplepie/autoloader.php');
+/**
+ * cowsRss.php
+ * 
+ * File containing cowsRss class and associated functions
+ * 
+ * @author Zachary Ennenga
+ */
 
+require_once('simplepie/autoloader.php');
+/**
+ * cowsRss
+ * 
+ * RSS Feed parsing class. Grabs the feed url (defaulting to front-tv) and parses it.
+ * 
+ * @throws SimplePie_Exception
+ *
+ */
 class cowsRss	{
+	/**
+	 * 
+	 * Raw SimplePie Feed
+	 * 
+	 * @var Simplepie Feed
+	 */
 	var $feed;
-	//Construct feed object for the cows site. Default to front tv.
-	//Appears to work with both atom and rss feeds, but more testing is required.
-	//ICS links will NOT work.
-	function cowsRss($feedUrl='http://cows.ucdavis.edu/ITS/event/rss?display=Front-TV')	{
+	/**
+	 * __construct
+	 * 
+	 * Constructor for the cowsRSS class. Interfaces with the SimplePie library to do most of the
+	 * heavy lifting with regards to rss parsing.
+	 * 
+	 * Either the /atom or /rss links from cows work. Do not use /ics links.
+	 * 
+	 * @param string $feedUrl
+	 * @throws SimplePie_Exception
+	 */
+	function __construct($feedUrl='http://cows.ucdavis.edu/ITS/event/rss?display=Front-TV')	{
 		$this->feed = new SimplePie();
 		$this->feed->set_feed_url($feedUrl);
-		//Our content involves html so we can't strip it
 		$this->feed->strip_htmltags(false);
 		$ec = $this->feed->init();
 		if (!$ec)	{
@@ -20,12 +47,24 @@ class cowsRss	{
 			$this->feed->handle_content_type();
 		}
 	}
-	//Return Raw feed object
+	/**
+	 * getRaw
+	 * 
+	 * Getter for the underlying simplepie feed.
+	 * 
+	 * @return SimplePie Feed
+	 */
 	function getRaw()	{
 		return $this->feed;
 	}
-	//Handles annoying double/triple encoded &nbsp and the like
-	//Also strips tags
+	/**
+	 * htmlDecode
+	 * 
+	 * Descriptions from Cows tend to be doubly encoded and have &nbsp;s hanging around in them. This function parses that all out.
+	 * 
+	 * @param string $str
+	 * @return string
+	 */
 	function htmlDecode($str)	{
 		$str = htmlspecialchars_decode($str);
 		$str = htmlspecialchars_decode($str);
@@ -33,37 +72,48 @@ class cowsRss	{
 		$str = str_replace('&nbsp;', '', $str);
 		return $str;
 	}
+	/**
+	 * 
+	 * getData
+	 * 
+	 * Returns an array of events parsed from the feed the object was constructed with.
+	 * 
+	 * The array keys are the field descriptors (Title, Description, etc). Each array key references another array, 
+	 * whos values are the actual values the descriptor references. This is done because some descriptors (Description, primarily) can have multiple values
+	 * 
+	 * 
+	 * @return array
+	 */
 	function getData()	{
 		$items = $this->feed->get_items();
+		//$i is -1 because we increment it and the begining of every foreach iteration. We want it to start at 0
 		$i = -1;
 		$out = array();
 		foreach($items as $item)	{
 			$tok = strtok($item->get_content(), "\n");
 			$i++;
 			$out[$i] = array();
-			//Grab title/description first. Purges &nbsp;s and html tags from the description where they tend to crop up.
+			//title and description are done first because these values are outside the normal parts of $item->get_content()
 			$out[$i]['Title'] = array();
 			$out[$i]['Description'] = array();
 			array_push($out[$i]['Title'],$item->get_title());
-			array_push($out[$i]['Description'],$this->htmlDecode(strip_tags($item->get_description(true))));
+			array_push($out[$i]['Description'],$this->htmlDecode($item->get_description(true)));
 			while($tok !== false)	{
 				$tokenArray = explode(": ",$tok);
-				//$tokenArray[0] is the field name, $tokenArray[1] is the value
-				//Handle the case where there is no value
+				//This handles the case where we get a descriptor with null data. Replaces null with an empty string to avoid weirdness later
 				if (!isset($tokenArray[1]))	{
 					$tokenArray[0] = str_replace(':','',$tokenArray[0]);
 					$tokenArray[1] = '';
 				}
-				//set array key to value. Make each one an array in case there are multiple values with the same Descriptor. This happens a lot with "Description"
+				//arrayify the key if not already
 				if(!isset($out[$i][$tokenArray[0]])) {
 					$out[$i][$tokenArray[0]] = array();
 				}
-				array_push($out[$i][$tokenArray[0]], $tokenArray[1]);	
+				array_push($out[$i][$tokenArray[0]], $tokenArray[1]);
 				$tok = strtok("\n");
 			}
 		}
 		return $out;
 	}
-	
 }
 ?>
