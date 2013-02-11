@@ -25,4 +25,5 @@ foreach($data as $dat)	{
 //footer
 require('./includes/footer.html');
 echo "</body>\n</html>";
+//test
 ?>
