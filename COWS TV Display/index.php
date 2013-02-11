@@ -1,5 +1,4 @@
 <?php
-//Include and initialize parser
 require_once('./includes/cowsRss.php');
 require_once('./includes/eventSequence.php');
 
@@ -9,11 +8,12 @@ try	{
 	echo $e->getmessage();
 	exit(0);
 }
+
 $sequence = new eventSequence($cows->getData());
-var_dump($sequence);
+
 //Header
 require('./includes/header.html');
-$sequence->toString();
+echo($sequence->toString());
 //footer
 require('./includes/footer.html');
 echo "</body>\n</html>";

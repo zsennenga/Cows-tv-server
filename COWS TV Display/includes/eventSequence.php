@@ -25,11 +25,13 @@ class eventSequence	{
 	
 	function toString()	{
 		$eventArray = $this->eventList;
+		$str = "";
 		foreach($eventArray as $event)	{
 			if (!$event->isPast() || $this->displayPast)	{
-				$event->toString();
+				$str .= $event->toString();
 			}
 		}
+		return $str;
 	}
 }
 ?>

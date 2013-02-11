@@ -60,11 +60,13 @@ class event	{
 	}
 	
 	function toString()	{
-		echo "<div id = 'title'>".$this->title."</div>\n";
-		echo "<div id = 'desc'>" . $this->description . "</div>\n";
-		echo "<div id = 'times'>" . $this->date . ", " . $this->startTime . ' - ' . $this->endTime . "</div>\n";
-		echo "<div id = 'loc'>".$this->location."</div>\n";
-		echo "<br/>\n";
+		$str = "";
+		$str .= "<div id = 'title'>".$this->title."</div>\n";
+		$str .= "<div id = 'desc'>" . $this->description . "</div>\n";
+		$str .= "<div id = 'times'>" . $this->date . ", " . $this->startTime . ' - ' . $this->endTime . "</div>\n";
+		$str .= "<div id = 'loc'>".$this->location."</div>\n";
+		$str .= "<br/>\n";
+		return $str;
 	}
 }
 ?>
