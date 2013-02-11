@@ -1,4 +1,11 @@
 <?php
+/**
+ * index.php
+ * 
+ * Basic Test for the Cows RSS parsing system.
+ * 
+ * @author Zachary Ennenga
+ */
 require_once('./includes/cowsRss.php');
 require_once('./includes/eventSequence.php');
 
@@ -13,8 +20,10 @@ $sequence = new eventSequence($cows->getData());
 
 //Header
 require('./includes/header.html');
+
+//content
 echo($sequence->toString());
+
 //footer
 require('./includes/footer.html');
-echo "</body>\n</html>";
 ?>
