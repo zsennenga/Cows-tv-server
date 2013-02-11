@@ -1,7 +1,7 @@
 <?php
 //Include and initialize parser
 require_once('./includes/cowsRss.php');
-require_once('./includes/eventSequnce.php');
+require_once('./includes/eventSequence.php');
 
 try	{
 	$cows = new cowsRss('http://cows.ucdavis.edu/ITS/event/atom?display=Front-TV');
@@ -10,6 +10,7 @@ try	{
 	exit(0);
 }
 $sequence = new eventSequence($cows->getData());
+var_dump($sequence);
 //Header
 require('./includes/header.html');
 $sequence->toString();

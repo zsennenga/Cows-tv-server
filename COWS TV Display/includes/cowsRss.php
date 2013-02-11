@@ -42,8 +42,10 @@ class cowsRss	{
 			$i++;
 			$out[$i] = array();
 			//Grab title/description first. Purges &nbsp;s and html tags from the description where they tend to crop up.
-			$out[$i]['Title']	 = $item->get_title();
-			$out[$i]['Description'] = $this->htmlDecode(strip_tags($item->get_description(true)));
+			$out[$i]['Title'] = array();
+			$out[$i]['Description'] = array();
+			array_push($out[$i]['Title'],$item->get_title());
+			array_push($out[$i]['Description'],$this->htmlDecode(strip_tags($item->get_description(true))));
 			while($tok !== false)	{
 				$tokenArray = explode(": ",$tok);
 				//$tokenArray[0] is the field name, $tokenArray[1] is the value
