@@ -1,6 +1,6 @@
 <?php
 //Include and initialize parser
-require('./includes/classes.php');
+require('./includes/cowsRss.php');
 try	{
 	$cows = new cowsRss('http://cows.ucdavis.edu/ITS/event/atom?display=Front-TV');
 } catch (Exception $e) {
