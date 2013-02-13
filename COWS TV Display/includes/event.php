@@ -109,7 +109,7 @@ class event	{
 	 * @param string $str
 	 */
 	function setDescription($str)	{
-		$this->cowsDecode($this->description = $str);
+		$this->description = $this->cowsDecode($str);
 	}
 	/**
 	 * setTime
