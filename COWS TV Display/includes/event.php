@@ -74,7 +74,7 @@ class event	{
 	 * @return boolean
 	 */
 	function isPast()	{
-		return strtotime($this->date . " ". $this->endTime)-10800 < time();
+		return strtotime("-11 hours",time()) > strtotime($this->date . " ". $this->endTime);
 	}
 	/**
 	 * cowsDecode
