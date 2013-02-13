@@ -55,6 +55,7 @@ class event	{
 	 * @param array $event
 	 */
 	function __construct($event)	{
+		date_default_timezone_set('America/Los_Angeles');
 		$this->setTitle($event['Title'][0]);
 		//Sometimes there are two descriptions, one of which is blank.
 		foreach($event['Description'] as $des)	{
@@ -75,6 +76,16 @@ class event	{
 	 */
 	function isPast()	{
 		return strtotime("-11 hours",time()) > strtotime($this->date . " ". $this->endTime);
+	}
+	/**
+	 * isToday
+	 * 
+	 *  returns true if an event is occuring today
+	 *
+	 *	@return boolean
+	 */
+	function isToday()	{
+		return date("n/j/Y") == $this->date;
 	}
 	/**
 	 * cowsDecode
