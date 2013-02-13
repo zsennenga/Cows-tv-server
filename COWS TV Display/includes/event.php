@@ -70,17 +70,29 @@ class event	{
 	/**
 	 * isPast
 	 * 
-	 * checks if a event occured in the past before printing. We have 3 hours of leeway.
+	 * Checks if a event occured in the past. 
 	 * 
 	 * @return boolean
 	 */
 	function isPast()	{
-		return strtotime("-11 hours",time()) > strtotime($this->date . " ". $this->endTime);
+		return strtotime("-8 hours",time()) > strtotime($this->date . " ". $this->endTime);
+	}
+	/**
+	 * isPast
+	 *
+	 * Checks if a event occured in the past.
+	 *
+	 * @param int $offset time offset in hours when checking if an event was in the past.
+	 * @return boolean
+	 */
+	function isPastOffset($offset)	{
+		$offset += 8;
+		return strtotime("-$offset hours",time()) > strtotime($this->date . " ". $this->endTime);
 	}
 	/**
 	 * isToday
 	 * 
-	 *  returns true if an event is occuring today
+	 *  Returns true if an event is occuring today
 	 *
 	 *	@return boolean
 	 */
