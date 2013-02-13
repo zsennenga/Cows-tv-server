@@ -58,21 +58,6 @@ class cowsRss	{
 		return $this->feed;
 	}
 	/**
-	 * htmlDecode
-	 * 
-	 * Descriptions from Cows tend to be doubly encoded and have &nbsp;s hanging around in them. This function parses that all out.
-	 * 
-	 * @param string $str
-	 * @return string
-	 */
-	function htmlDecode($str)	{
-		$str = htmlspecialchars_decode($str);
-		$str = htmlspecialchars_decode($str);
-		$str = strip_tags($str);
-		$str = str_replace('&nbsp;', '', $str);
-		return $str;
-	}
-	/**
 	 * 
 	 * getData
 	 * 
@@ -97,7 +82,7 @@ class cowsRss	{
 			$out[$i]['Title'] = array();
 			$out[$i]['Description'] = array();
 			array_push($out[$i]['Title'],$item->get_title());
-			array_push($out[$i]['Description'],$this->htmlDecode($item->get_description(true)));
+			array_push($out[$i]['Description'],$item->get_description(true));
 			while($tok !== false)	{
 				$tokenArray = explode(": ",$tok);
 				//This handles the case where we get a descriptor with null data. Replaces null with an empty string to avoid weirdness later

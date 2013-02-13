@@ -77,6 +77,21 @@ class event	{
 		return strtotime($this->date . " ". $this->endTime)-10800 < time();
 	}
 	/**
+	 * cowsDecode
+	 *
+	 * Descriptions from Cows tend to be doubly encoded and have &nbsp;s hanging around in them. This function parses that all out.
+	 *
+	 * @param string $str
+	 * @return string
+	 */
+	function cowsDecode($str)	{
+		$str = htmlspecialchars_decode($str);
+		$str = htmlspecialchars_decode($str);
+		$str = strip_tags($str);
+		$str = str_replace('&nbsp;', '', $str);
+		return $str;
+	}
+	/**
 	 * setTitle
 	 * 
 	 * Sets the Event's title
@@ -94,7 +109,7 @@ class event	{
 	 * @param string $str
 	 */
 	function setDescription($str)	{
-		$this->description = $str;
+		$this->cowsDecode($this->description = $str);
 	}
 	/**
 	 * setTime
