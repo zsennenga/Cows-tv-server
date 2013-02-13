@@ -139,7 +139,10 @@ class event	{
 		$this->location = str_replace("_"," ",$val[0]) . ", Room " . $val[1];
 	}
 	/**
+	 * toString
+	 * 
 	 * Composes and returns the html for a single event.
+	 * 
 	 * @return string
 	 */
 	function toString()	{
