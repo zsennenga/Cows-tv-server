@@ -205,14 +205,7 @@ class event	{
 		$out['location']  = $this->$location;
 		return $out;
 	}
-	/**
-	 * getTimeStart
-	 * 
-	 * Gets the timestamp from the start time + date
-	 * 
-	 * @return timestamp 
-	 * 
-	 */
+	
 	function getStartTimestamp() {
 		return strtotime($this->date,strtotime($this->startTime));
 	}
