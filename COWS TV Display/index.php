@@ -16,13 +16,15 @@ try	{
 	exit(0);
 }
 
-$sequence = new eventSequence($cows->getData());
+//$sequence = new eventSequence($cows->getData());
+$sequence = eventSequence::createSequenceFromArrayCountBounded($cows->getData(),10,true);
 
 //Header
 require('./includes/header.html');
 
 //content
 echo($sequence->toString());
+
 
 //footer
 require('./includes/footer.html');

@@ -75,7 +75,7 @@ class event	{
 	 * @return boolean
 	 */
 	function isPast()	{
-		return strtotime("-8 hours",time()) > strtotime($this->date . " ". $this->endTime);
+		return strtotime("-8 hours",time()) > strtotime($this->date,strtotime($this->endTime));
 	}
 	/**
 	 * isPast
@@ -191,6 +191,54 @@ class event	{
 		$str .= "<div id = 'loc'>".$this->location."</div>\n";
 		$str .= "<br/>\n";
 		return $str;
+	}
+	/**
+	 * 
+	 */
+	function toArray()	{
+		$out = array();
+		$out['title'] = $this->title;
+		$out['startTime']  = $this->$startTime;
+		$out['endTime']  = $this->$endTime;
+		$out['date']  = $this->$date;
+		$out['description']  = $this->$description;
+		$out['location']  = $this->$location;
+		return $out;
+	}
+	/**
+	 * getTimeStart
+	 * 
+	 * Gets the timestamp from the start time + date
+	 * 
+	 * @return timestamp 
+	 * 
+	 */
+	function getStartTimestamp() {
+		return strtotime($this->date,strtotime($this->startTime));
+	}
+	
+	function getEndTimestamp() {
+		return strtotime($this->date,strtotime($this->endTime));
+	}
+	
+	function getStartTime()	{
+		return $this->startTime;
+	}
+	function getEndTime()	{
+		return $this->endTime;
+	}
+	function getDate()	{
+		return $this->date;
+	}
+	
+	function getTitle()	{
+		return $this->title;
+	}
+	function getDescription(){
+		return $this->description;
+	}
+	function getLocation()	{
+		return $this->location;
 	}
 }
 ?>
