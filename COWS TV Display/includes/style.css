@@ -1,0 +1,25 @@
+body	{
+	font-family: Georgia, serif;
+	width: 1920px;
+	height: 1080px;
+}
+#events	{
+	color:white;
+	background-color:#002855;
+	height: 50px;	
+}
+#eventHeaderText	{
+	padding-left:10px;
+	position: relative;
+	top: 10px;
+}
+#title	{
+	padding-left: 55px;
+}
+#other	{
+	padding-left: 65px;
+}
+#footer	{
+	background-color:#002855;
+	height: 50px;
+}

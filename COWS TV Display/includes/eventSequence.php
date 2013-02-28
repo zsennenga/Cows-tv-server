@@ -65,6 +65,7 @@ class eventSequence	{
 				$eventOut->addEvent($event);
 				$i++;
 			}
+			else if ($i >= $count) break;
 		}
 		return $eventOut;
 	}
@@ -108,6 +109,7 @@ class eventSequence	{
 				$eventOut->addEvent($event);
 				$i++;
 			}
+			else if ($i >= $count) break;
 		}
 		return $eventOut;
 	}
