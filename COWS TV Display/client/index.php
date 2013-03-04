@@ -2,9 +2,9 @@
 <html>
 <head>
 	<title>ITS Cows Calendar</title>
-	<link rel="stylesheet" href="includes/style.css" type="text/css">
-	<script src="./includes/jquery.js"></script>
-	<script src="./includes/ajax.js"></script>
+	<link rel="stylesheet" href="style/style.css" type="text/css">
+	<script src="./js/jquery.js"></script>
+	<script src="./js/ajax.js"></script>
 </head>
 <body>
 <div id='header'>
@@ -14,3 +14,11 @@
 	</div>
 </div>
 <br/>
+<div id='content'>
+	<div id='event1'>No event available to display.</div>
+	<div id='event2'>No event available to display.</div>
+</div>
+<br/>
+<div id='footer'></div>
+</body>
+</html>
