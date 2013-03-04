@@ -13,7 +13,7 @@ body	{
 #events	{
 	color:white;
 	background-color:#002855;
-	height: 50px;	
+	height: 50px;
 }
 #logo	{
 	width: inherit;
@@ -29,9 +29,12 @@ body	{
 	left: 850px;
 }
 #title	{
-	text-align: center
+	font-size:275%;
+	text-align: center;
+	font-weight:bold;
 }
 #other	{
+	font-size:200%;
 	text-align: center;
 }
 #footer	{
@@ -39,8 +42,10 @@ body	{
 	height: 50px;
 }
 #event1	{
-	font-size:275%;
+	text-align: center;
+	height: 50%;
 }
 #event2 {
-	font-size:275%;
+	height: 50%;
+	text-align: center;
 }

@@ -19,5 +19,5 @@ function eventUpdate(){
 	  index2 = (index2 + 2) % 6;
 }
 doAjax();
-setInterval(eventUpdate, 1000*10);
+setInterval(eventUpdate, 1000*15);
 setInterval(doAjax, 1000*15*60);
