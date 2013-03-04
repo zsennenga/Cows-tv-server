@@ -12,7 +12,6 @@ require_once('eventSequence.php');
 try	{
 	$cows = new cowsRss('http://cows.ucdavis.edu/ITS/event/atom?display=Front-TV');
 } catch (Exception $e) {
-	echo $e->getmessage();
 	exit(0);
 }
 
@@ -22,5 +21,6 @@ $eventList = $sequence->getList();
 for ($i = 0; $i < 6; $i++)	{
 	$out[$i] = $eventList[$i]->toString();
 }
-echo json_encode($out);
+$json = json_encode($out);
+echo $_GET['callback'] . "($json);";
 ?>
