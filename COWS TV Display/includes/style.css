@@ -1,25 +1,46 @@
 body	{
 	font-family: Georgia, serif;
-	width: 1920px;
-	height: 1080px;
+	overflow: none;
+	margin: 5px auto;
+	width:1920px;
+	overflow:hidden;
+}
+#content	{
+	height: 865px;
+	max-height:1080px;
+	overflow:hidden;
 }
 #events	{
 	color:white;
 	background-color:#002855;
 	height: 50px;	
 }
-#eventHeaderText	{
-	padding-left:10px;
+#logo	{
+	width: inherit;
+	max-width: 1920px;
 	position: relative;
-	top: 10px;
+	left: 700px;
+}
+#eventHeaderText	{
+	width: inherit;
+	max-width: 1920px;
+	position: relative;
+	top: 9px;
+	left: 850px;
 }
 #title	{
-	padding-left: 55px;
+	text-align: center
 }
 #other	{
-	padding-left: 65px;
+	text-align: center;
 }
 #footer	{
 	background-color:#002855;
 	height: 50px;
+}
+#event1	{
+	font-size:275%;
+}
+#event2 {
+	font-size:275%;
 }

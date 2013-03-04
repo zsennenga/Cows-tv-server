@@ -67,9 +67,14 @@ class cowsRss	{
 	 * whos values are the actual values the descriptor references. This is done because some descriptors (Description, primarily) can have multiple values
 	 * 
 	 * 
+	 * @param int $cacheTime
 	 * @return array
 	 */
-	function getData()	{
+	function getData($accessTime)	{
+		$lastTime = file_get_contents("../cache/last.txt");
+		if (strtotime($accessTime) < strtotime("+15 Minutes",$lastTime) && $lastTime != "")	{
+			return unserialize(file_get_contents("../cache/array.txt"));
+		}
 		$items = $this->feed->get_items();
 		//$i is -1 because we increment it and the begining of every foreach iteration. We want it to start at 0
 		$i = -1;
@@ -98,7 +103,24 @@ class cowsRss	{
 				$tok = strtok("\n");
 			}
 		}
+		$this->cache($out);
 		return $out;
+	}
+	/**
+	 * 
+	 * cache
+	 * 
+	 * Braindead caching of the $out array from cows->getData() so we only hit the cows server once every 15 minutes or so.
+	 * 
+	 * @param array $out
+	 */
+	function cache($out)	{
+		$fhandle = fopen("../cache/last.txt","w");
+		fwrite($fhandle,time());
+		fclose($fhandle);
+		$fhandle = fopen("../cache/array.txt","w");
+		fwrite($fhandle,serialize($out));
+		fclose($fhandle);
 	}
 }
 ?>

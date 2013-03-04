@@ -185,12 +185,12 @@ class event	{
 	 */
 	function toString()	{
 		$str = "";
-		$str .= "<div id = 'title'><h3>".$this->title."</h3></div>\n";
-		$str .= "<ul>";
-		$str .= "<div id = 'other'><li>" . $this->description . "</li></div>\n";
-		$str .= "<div id = 'other'><li>" . $this->date . ", " . $this->startTime . ' - ' . $this->endTime . "</li></div>\n";
-		$str .= "<div id = 'other'><li>".$this->location."</li></div>\n";
-		$str .= "</ul><br/>\n";
+		$str .= "<div id = 'title'><h3 id='titleText'> ".$this->title."</h3></div>\n";
+		$str .= "<div id = 'other'>";
+		$str .= "" . $this->description . "<br/>\n";
+		$str .= "" . $this->date . ", " . $this->startTime . ' - ' . $this->endTime . "<br/>\n";
+		$str .= "".$this->location."<br/>\n";
+		$str .= "</div>\n";
 		return $str;
 	}
 	/**
