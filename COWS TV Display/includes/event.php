@@ -207,11 +207,11 @@ class event	{
 	}
 	
 	function getStartTimestamp() {
-		return strtotime($this->date,strtotime($this->startTime));
+		return strtotime($this->date . " " . $this->startTime);
 	}
 	
 	function getEndTimestamp() {
-		return strtotime($this->date,strtotime($this->endTime));
+		return strtotime($this->date . " " . $this->endTime);
 	}
 	
 	function getStartTime()	{

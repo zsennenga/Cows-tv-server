@@ -15,7 +15,7 @@ try	{
 	exit(0);
 }
 
-$sequence = eventSequence::createSequenceFromArrayTimeBounded($cows->getData(time()),strtotime("midnight", time()),strtotime("tomorrow", $beginOfDay));
+$sequence = eventSequence::createSequenceFromArrayTimeBounded($cows->getData(time()),strtotime("midnight", time()),strtotime("midnight tomorrow", time()));
 
 $eventList = $sequence->getList();
 
