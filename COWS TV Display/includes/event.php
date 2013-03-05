@@ -184,12 +184,12 @@ class event	{
 	 * @return string
 	 */
 	function toString()	{
-		$str = "<div class=event>";
-		$str .= "<div id = 'title'>".$this->title."</div>\n";
-		$str .= "<br\><div id = 'other'>";
+		$str = "<div class = 'row'><div class = 'event'>";
+		$str .= "<div class = 'title'>".$this->title."</div>\n";
+		$str .= "<br\><div class = 'other'>";
 		$str .= $this->startTime . ' - ' . $this->endTime . "<br/>\n";
 		$str .= "".$this->location."<br/>\n";
-		$str .= "</div></div>\n";
+		$str .= "</div></div></div>\n";
 		return $str;
 	}
 	/**
