@@ -187,8 +187,7 @@ class event	{
 		$str = "";
 		$str .= "<div id = 'title'>".$this->title."</div>\n";
 		$str .= "<br\><div id = 'other'>";
-		$str .= "" . $this->description . "<br/>\n";
-		$str .= "" . $this->date . ", " . $this->startTime . ' - ' . $this->endTime . "<br/>\n";
+		$str .= $this->startTime . ' - ' . $this->endTime . "<br/>\n";
 		$str .= "".$this->location."<br/>\n";
 		$str .= "</div>\n";
 		return $str;
