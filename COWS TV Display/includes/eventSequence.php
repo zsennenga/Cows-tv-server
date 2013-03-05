@@ -83,8 +83,8 @@ class eventSequence	{
 		$eventSource = new eventSequence($eventArray);
 		$eventOut = new eventSequence(array());
 		foreach($eventSource->getList() as $event)	{
-			if ($event->getStartTimestamp() >= strtotime($startTime) 
-					&& $event->getEndTimestamp() <= strtotime($endTime))	{
+			if ($event->getStartTimestamp() >= $startTime
+					&& $event->getEndTimestamp() <= $endTime)	{
 				$eventOut->addEvent($event);
 			}
 		}
@@ -130,6 +130,7 @@ class eventSequence	{
 					&& $event->getEndTimestamp() <= strtotime($endTime))	{
 					$eventOut->addEvent($event);
 			}
+			
 		}
 		$eventOut->setdisplayPast(false);
 		return $eventOut;

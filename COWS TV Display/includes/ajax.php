@@ -8,29 +8,25 @@
  */
 require_once('cowsRss.php');
 require_once('eventSequence.php');
-
+if(!isset($_GET['callback'])) exit(0);
 try	{
 	$cows = new cowsRss('http://cows.ucdavis.edu/ITS/event/atom?display=Front-TV');
 } catch (Exception $e) {
 	exit(0);
 }
 
-$timestamp = time();
-
-$beginOfDay = strtotime("midnight", $timestamp);
-$endOfDay   = strtotime("tomorrow", $beginOfDay) - 1;
-
-$sequence = eventSequence::createSequenceFromArrayTimeBounded($cows->getData(time()),$beginOfDay,$endOfDay);
+$sequence = eventSequence::createSequenceFromArrayTimeBounded($cows->getData(time()),strtotime("midnight", time()),strtotime("tomorrow", $beginOfDay));
 
 $eventList = $sequence->getList();
-for ($i = 0; $i < 6; $i++)	{
-	$out[$i] = $eventList[$i]->toString();
-}
-if (count($out) >= 1)	{
+
+if (count($eventList) >= 1)	{
+	for ($i = 0; $i < count($eventList); $i++)	{
+		$out[$i] = $eventList[$i]->toString();
+	}
 	$json = json_encode($out);
 }
 else	{
-	$json = json_encode(array(null,"<div class='noevent'>No event scheduled for today</div>"));
+	$json = json_encode(array(0 => "noEvent",1 => "<div class='noevent'>No event scheduled for today</div>"));
 }
 echo $_GET['callback'] . "($json);";
 ?>
