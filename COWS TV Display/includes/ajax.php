@@ -30,7 +30,7 @@ if (count($out) >= 1)	{
 	$json = json_encode($out);
 }
 else	{
-	$json = json_encode(array("<div class='noevent'>No event scheduled for today</div>"));
+	$json = json_encode(array(null,"<div class='noevent'>No event scheduled for today</div>"));
 }
 echo $_GET['callback'] . "($json);";
 ?>
