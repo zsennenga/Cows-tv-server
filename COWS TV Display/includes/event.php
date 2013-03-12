@@ -193,7 +193,11 @@ class event	{
 		return $str;
 	}
 	/**
+	 * toArray
 	 * 
+	 * Creates array with details of a single event
+	 * 
+	 * @return array
 	 */
 	function toArray()	{
 		$out = array();
@@ -205,7 +209,14 @@ class event	{
 		$out['location']  = $this->$location;
 		return $out;
 	}
-	
+	/**
+	 * Getters
+	 * 
+	 * A collection of getters for the private variables
+	 * 
+	 * 
+	 * 
+	 */
 	function getStartTimestamp() {
 		return strtotime($this->date . " " . $this->startTime);
 	}
@@ -223,7 +234,6 @@ class event	{
 	function getDate()	{
 		return $this->date;
 	}
-	
 	function getTitle()	{
 		return $this->title;
 	}

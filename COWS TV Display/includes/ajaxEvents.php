@@ -1,8 +1,8 @@
 <?php
 /**
- * ajax.php
+ * ajaxEvents.php
  * 
- * Script for returning 
+ * Script for passing event information to the tv app via javascript
  * 
  * @author Zachary Ennenga
  */
