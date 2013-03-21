@@ -8,23 +8,26 @@
  */
 require_once('cowsRss.php');
 require_once('eventSequence.php');
+//Guarentee callback is set to avoid weird formatting/variable errors
 if(!isset($_GET['callback'])) exit(0);
+//Get Feed
 try	{
 	$cows = new cowsRss('http://cows.ucdavis.edu/ITS/event/atom?display=Front-TV');
 } catch (Exception $e) {
 	exit(0);
 }
-
+//Generate eventSequence
 $sequence = eventSequence::createSequenceFromArrayTimeBounded($cows->getData(time()),strtotime(time()),strtotime("midnight tomorrow", time()));
-
+//Get the raw list
 $eventList = $sequence->getList();
-
+//Put each event string in an array
 if (count($eventList) >= 1)	{
 	for ($i = 0; $i < count($eventList); $i++)	{
 		$out[$i] = $eventList[$i]->toString();
 	}
 	$json = json_encode($out);
 }
+//Handle no events case
 else	{
 	$json = json_encode(array(0 => "noEvent",1 => "<div class='noevent'>No event scheduled for today</div>"));
 }
