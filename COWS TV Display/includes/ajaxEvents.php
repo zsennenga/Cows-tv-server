@@ -23,13 +23,18 @@ $eventList = $sequence->getList();
 //Put each event string in an array
 if (count($eventList) >= 1)	{
 	for ($i = 0; $i < count($eventList); $i++)	{
-		$out[$i] = $eventList[$i]->toString();
+		if (!$eventList[$i]->isPast())  {
+			$out[$i] = $eventList[$i]->toString();
+		}
 	}
 	$json = json_encode($out);
 }
 //Handle no events case
-else	{
-	$json = json_encode(array(0 => "noEvent",1 => "<div class='noevent'>No event scheduled for today</div>"));
+else if (count($eventList) == 0)	{
+	$json = json_encode(array(0 => "noEvent",1 => "<div class='noevent'>No events scheduled for today</div>"));
+}
+if (count($out) == 0)	{
+	$json = json_encode(array(0 => "noEvent",1 => "<div class='noevent'>No events remaining for today</div>"));
 }
 echo $_GET['callback'] . "($json);";
 ?>
