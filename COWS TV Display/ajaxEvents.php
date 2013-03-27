@@ -6,8 +6,8 @@
  * 
  * @author Zachary Ennenga
  */
-require_once('cowsRss.php');
-require_once('eventSequence.php');
+require_once('includes/cowsRss.php');
+require_once('includes/eventSequence.php');
 //Guarentee callback is set to avoid weird formatting/variable errors
 if(!isset($_GET['callback'])) exit(0);
 //Get Feed
