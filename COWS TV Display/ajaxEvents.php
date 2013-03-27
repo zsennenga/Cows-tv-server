@@ -23,7 +23,7 @@ $eventList = $sequence->getList();
 //Put each event string in an array
 if (count($eventList) >= 1)	{
 	for ($i = 0; $i < count($eventList); $i++)	{
-		if (!$eventList[$i]->isPast())  {
+		if (!$eventList[$i]->isPastOffset(1))  {
 			$out[$i] = $eventList[$i]->toString();
 		}
 	}

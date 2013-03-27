@@ -75,10 +75,10 @@ class event	{
 	 * @return boolean
 	 */
 	function isPast()	{
-		return strtotime("-8 hours",time()) > strtotime($this->date,strtotime($this->endTime));
+		return time() > strtotime($this->date . " ". $this->endTime);
 	}
 	/**
-	 * isPast
+	 * isPastOffset
 	 *
 	 * Checks if a event occured in the past.
 	 *
@@ -86,7 +86,6 @@ class event	{
 	 * @return boolean
 	 */
 	function isPastOffset($offset)	{
-		$offset += 8;
 		return strtotime("-$offset hours",time()) > strtotime($this->date . " ". $this->endTime);
 	}
 	/**
