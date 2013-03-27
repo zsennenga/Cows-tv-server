@@ -17,14 +17,16 @@ try	{
 	exit(0);
 }
 //Generate eventSequence
-$sequence = eventSequence::createSequenceFromArrayTimeBounded($cows->getData(time()),strtotime(time()),strtotime("midnight tomorrow", time()));
+$sequence = eventSequence::createSequenceFromArrayTimeBounded($cows->getData(time()),strtotime("midnight", time()),strtotime("midnight tomorrow", time()));
 //Get the raw list
 $eventList = $sequence->getList();
 //Put each event string in an array
+$index = 0;
 if (count($eventList) >= 1)	{
 	for ($i = 0; $i < count($eventList); $i++)	{
-		if (!$eventList[$i]->isPastOffset(1))  {
+		if (!$eventList[$i]->isPast())  {
 			$out[$i] = $eventList[$i]->toString();
+			$index++;
 		}
 	}
 	$json = json_encode($out);
