@@ -29,14 +29,15 @@ if (count($eventList) >= 1)	{
 			$index++;
 		}
 	}
-	$json = json_encode($out);
+	
+	if (count($out) == 0)	{
+		$json = json_encode(array(0 => "noEvent",1 => "<div class='noevent'>No events remaining for today</div>"));
+	}
+	else	$json = json_encode($out);
 }
 //Handle no events case
 else if (count($eventList) == 0)	{
 	$json = json_encode(array(0 => "noEvent",1 => "<div class='noevent'>No events scheduled for today</div>"));
-}
-if (count($out) == 0)	{
-	$json = json_encode(array(0 => "noEvent",1 => "<div class='noevent'>No events remaining for today</div>"));
 }
 echo $_GET['callback'] . "($json);";
 ?>
