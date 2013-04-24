@@ -34,6 +34,7 @@ if (count($eventList) >= 1)	{
 		$json = json_encode(array(0 => "noEvent",1 => "<div class='noevent'>No events remaining for today</div>"));
 	}
 	else	$json = json_encode($out);
+	
 }
 //Handle no events case
 else if (count($eventList) == 0)	{
