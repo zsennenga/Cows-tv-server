@@ -1,5 +1,10 @@
+#DEPRECATED
+
+This project is DEPRECATED and as such will no longer be updated. All functionality has been rolled into COWS-RESTful-API.
+
 Cows TV Display
 ======
+
 
 COWS is the COmmunity Web Scheduler used by several UC Davis departments under the College of Engineering Umbrella.
 It interacts with the UC Davis CAS system 
